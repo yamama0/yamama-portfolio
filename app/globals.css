@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------
+   Licensed brand faces.
+   Drop Agate-Bold.woff2 and ITCAvantGardeGothicStd-Bk.woff2 into
+   /public/fonts and these @font-face rules take over automatically.
+   Until then --font-display / --font-body resolve to the next/font
+   Montserrat + Poppins values set on <html> in app/layout.tsx.
+--------------------------------------------------------------- */
+@font-face {
+  font-family: "Agate";
+  src: url("/fonts/Agate-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ITC Avant Garde Gothic Std";
+  src: url("/fonts/ITCAvantGardeGothicStd-Bk.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --ink: #231f20;
+  --gold: #fdb913;
+}
+
+@layer base {
+  * {
+    @apply border-hairline;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ink font-body antialiased;
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-bold text-white;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: #fdb913;
+    color: #231f20;
+  }
+
+  :focus-visible {
+    outline: 2px solid #fdb913;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Small uppercase tracked label used as a section eyebrow —
+     lifted from the "P R O D U C T I O N S" lockup. */
+  .eyebrow {
+    @apply font-body text-[0.6875rem] font-medium uppercase tracking-brand text-gold;
+  }
+
+  .card {
+    @apply rounded-2xl border border-hairline bg-charcoal-800/60 backdrop-blur-sm
+           transition-all duration-500 ease-brand;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-gold/50 hover:bg-charcoal-800 hover:shadow-lift;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           font-body text-sm font-semibold tracking-wide transition-all
+           duration-300 ease-brand;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold text-ink hover:bg-gold-300 hover:shadow-gold active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply btn border border-white/25 text-white hover:border-gold hover:text-gold active:scale-[0.98];
+  }
+
+  .rule {
+    @apply h-px w-full bg-gradient-to-r from-gold/60 via-hairline to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gold-sheen bg-clip-text text-transparent;
+  }
+
+  .grid-lines {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
