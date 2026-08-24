@@ -1,4 +1,5 @@
-import { Music4, Radio, Youtube } from "lucide-react";
+import Image from "next/image";
+import { Instagram, Music4, Play, Radio, Youtube } from "lucide-react";
 import { audioStack, profile } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
@@ -11,22 +12,28 @@ import { Waveform } from "./ui/Waveform";
  */
 const releases = [
   {
-    title: "Studio session — layering oud over a four-on-the-floor",
-    platform: "YouTube",
-    length: "08:14",
+    title: "Black Metal",
+    platform: "Instagram" as const,
+    length: "01:27",
     embedId: null as string | null,
+    link: "https://www.instagram.com/p/C6_xkllN_9w/" as string | null,
+    thumbnail: "/instagram-black-metal.jpg" as string | null,
   },
   {
     title: "Sound design breakdown: turning a field recording into a pad",
-    platform: "YouTube",
+    platform: "YouTube" as const,
     length: "11:02",
-    embedId: null,
+    embedId: null as string | null,
+    link: null as string | null,
+    thumbnail: null as string | null,
   },
   {
     title: "Why your mix sounds thin — one EQ move",
-    platform: "TikTok",
+    platform: "TikTok" as const,
     length: "00:58",
-    embedId: null,
+    embedId: null as string | null,
+    link: null as string | null,
+    thumbnail: null as string | null,
   },
 ];
 
@@ -58,6 +65,35 @@ export function AudioHub() {
                     allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
                     allowFullScreen
                   />
+                ) : r.link ? (
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative flex h-full items-center justify-center overflow-hidden"
+                  >
+                    {r.thumbnail && (
+                      <Image
+                        src={r.thumbnail}
+                        alt={r.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-charcoal-950/40 transition-colors group-hover:bg-charcoal-950/55"
+                    />
+                    <div className="relative flex flex-col items-center gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-charcoal-900/80 text-gold backdrop-blur transition-colors group-hover:bg-gold group-hover:text-charcoal-950">
+                        <Play size={18} className="ml-0.5" fill="currentColor" />
+                      </span>
+                      <p className="font-mono text-[10px] uppercase tracking-widest text-white/70 group-hover:text-white">
+                        Watch on {r.platform}
+                      </p>
+                    </div>
+                  </a>
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center gap-4">
                     <Waveform bars={22} className="h-8 w-32" animate={false} />
@@ -69,7 +105,13 @@ export function AudioHub() {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold">
-                  {r.platform === "YouTube" ? <Youtube size={13} /> : <Radio size={13} />}
+                  {r.platform === "YouTube" ? (
+                    <Youtube size={13} />
+                  ) : r.platform === "Instagram" ? (
+                    <Instagram size={13} />
+                  ) : (
+                    <Radio size={13} />
+                  )}
                   {r.platform}
                   <span className="text-white/30">· {r.length}</span>
                 </div>
