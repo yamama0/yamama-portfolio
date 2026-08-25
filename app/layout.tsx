@@ -32,8 +32,11 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const ogDescription =
+  "Technical Product Manager and creator of The Angry Bird — bridging engineering execution with audio innovation, from TPM case studies to a Maqamat/Heavy Metal fusion project.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mohamedyamama.com"),
+  metadataBase: new URL("https://yamama.site"),
   title: {
     default: "Yamama — Technical Product Manager & Audio Tech Creator",
     template: "%s · Yamama",
@@ -56,11 +59,17 @@ export const metadata: Metadata = {
   authors: [{ name: profile.name }],
   openGraph: {
     title: "Yamama — Technical Product Manager & Audio Tech Creator",
-    description: `${profile.headline} Creator of The Angry Bird — a fusion of ancient Maqamat and Heavy Metal guitar.`,
+    description: ogDescription,
+    url: "https://yamama.site",
+    siteName: "Yamama",
     type: "website",
     locale: "en_US",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yamama — Technical Product Manager & Audio Tech Creator",
+    description: ogDescription,
+  },
   robots: { index: true, follow: true },
 };
 
