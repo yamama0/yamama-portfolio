@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { profile, stats } from "@/lib/data/profile";
-import { DovePattern } from "./ui/Logo";
+import { DovePattern, Logo } from "./ui/Logo";
 import { Waveform } from "./ui/Waveform";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -36,7 +36,11 @@ export function Hero() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
           {/* --- Left: the thesis --- */}
           <div>
-            <motion.div {...rise(0)} className="flex items-center gap-3">
+            <motion.div {...rise(-0.04)}>
+              <Logo className="h-9 w-auto text-gold sm:h-10" />
+            </motion.div>
+
+            <motion.div {...rise(0)} className="mt-6 flex items-center gap-3">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-gold opacity-70 motion-safe:animate-ping" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />

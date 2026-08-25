@@ -12,7 +12,7 @@ import { Waveform } from "./ui/Waveform";
  */
 const releases = [
   {
-    title: "Black Metal",
+    title: "Is Metal Satanic?",
     platform: "Instagram" as const,
     length: "01:27",
     embedId: null as string | null,
@@ -20,20 +20,20 @@ const releases = [
     thumbnail: "/instagram-black-metal.jpg" as string | null,
   },
   {
-    title: "Sound design breakdown: turning a field recording into a pad",
+    title: "Islamic Metal",
     platform: "YouTube" as const,
-    length: "11:02",
-    embedId: null as string | null,
+    length: "00:58",
+    embedId: "f8320xoD9zo" as string | null,
     link: null as string | null,
     thumbnail: null as string | null,
   },
   {
-    title: "Why your mix sounds thin — one EQ move",
+    title: "Why Metallica's most famous riff still holds up",
     platform: "TikTok" as const,
-    length: "00:58",
+    length: "00:36",
     embedId: null as string | null,
-    link: null as string | null,
-    thumbnail: null as string | null,
+    link: "https://www.tiktok.com/@llyamamall/video/7315779606538145030" as string | null,
+    thumbnail: "/tiktok-metallica-cover.jpg" as string | null,
   },
 ];
 
