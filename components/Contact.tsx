@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, MessageCircle } from "lucide-react";
 import { profile } from "@/lib/data/profile";
 import { Reveal } from "./ui/Reveal";
 import { DovePattern, Logo } from "./ui/Logo";
@@ -7,7 +7,6 @@ import { DovePattern, Logo } from "./ui/Logo";
 const socials = [
   { label: "LinkedIn", href: profile.linkedin, Icon: Linkedin },
   { label: "GitHub", href: profile.github, Icon: Github },
-  { label: "Email", href: `mailto:${profile.email}`, Icon: Mail },
 ];
 
 export function Contact() {
@@ -66,7 +65,7 @@ export function Contact() {
               <li key={label}>
                 <a
                   href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  target="_blank"
                   rel="noreferrer"
                   className="card card-hover flex items-center gap-2.5 px-5 py-3 text-sm text-white/70 hover:text-gold"
                 >

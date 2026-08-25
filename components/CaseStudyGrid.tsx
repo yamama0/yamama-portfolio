@@ -12,10 +12,7 @@ const statusTone: Record<string, string> = {
 
 export function CaseStudyGrid() {
   return (
-    <section
-      id="case-studies"
-      className="scroll-mt-24 border-t border-hairline py-20 sm:py-28"
-    >
+    <section className="border-t border-hairline py-20 sm:py-28">
       <div className="shell">
         <SectionHeading
           eyebrow="Case Studies"

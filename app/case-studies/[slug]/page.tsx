@@ -119,7 +119,7 @@ export default function CaseStudyPage({ params }: Params) {
 
         <div className="shell">
           <Link
-            href="/#case-studies"
+            href="/case-studies"
             className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-white/40 transition-colors hover:text-gold"
           >
             <ArrowLeft
@@ -128,6 +128,7 @@ export default function CaseStudyPage({ params }: Params) {
             />
             All case studies
           </Link>
+
 
           <div className="mt-8 flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-gold/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-gold">

@@ -8,9 +8,9 @@ import { Logo } from "./ui/Logo";
 
 const links = [
   { href: "/#about", label: "About" },
-  { href: "/#case-studies", label: "Case studies" },
+  { href: "/case-studies", label: "Case studies" },
   { href: "/#experience", label: "Experience" },
-  { href: "/music", label: "Music" },
+  { href: "/music", label: "Creator Hub" },
 ];
 
 export function Nav() {

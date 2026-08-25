@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
+import { PageTransition } from "@/components/PageTransition";
 import { profile } from "@/lib/data/profile";
 
 /**
@@ -86,7 +87,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main">
+          <PageTransition>{children}</PageTransition>
+        </main>
       </body>
     </html>
   );
