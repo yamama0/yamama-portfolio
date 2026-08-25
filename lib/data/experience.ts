@@ -17,8 +17,8 @@ export const experience: Role[] = [
     title: "Technical Product Manager",
     location: "Cairo, Egypt",
     start: "Jun 2025",
-    end: "Present",
-    current: true,
+    end: "Sep 2026",
+    current: false,
     thesis:
       "Owning discovery-to-release for a B2B procurement platform, with the technical depth to unblock engineering instead of escalating to it.",
     highlights: [
@@ -39,12 +39,12 @@ export const experience: Role[] = [
     thesis:
       "The hinge point — building the release pipeline first, then earning the right to decide what goes through it.",
     highlights: [
-      "Spearheaded CI/CD automation with Docker and GitHub Actions, reducing deployment time by 40%.",
+      "Led the Odoo 15 to Odoo 18 upgrade, planning module migration and regression testing to ship with zero data loss.",
       "Wrote requirements for mobile and web features alongside stakeholders, moving from testing specs to writing them.",
       "Ran GraphQL query testing to verify API responses and guarantee data accuracy across the platform.",
       "Mentored QA engineers and built the web and mobile test strategy from scratch.",
     ],
-    tags: ["Docker", "GitHub Actions", "GraphQL", "Test strategy"],
+    tags: ["Odoo", "Migration", "GraphQL", "Test strategy"],
   },
   {
     company: "Zeal Global Solutions",

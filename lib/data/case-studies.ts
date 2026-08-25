@@ -282,64 +282,166 @@ export const caseStudies: CaseStudy[] = [
     source: "Linear — Mixpanel & WebEngage Correction and Tracking Consistency",
   },
   {
-    slug: "cicd-pipeline-automation",
-    title: "CI/CD Pipeline Automation",
-    kicker: "Engineering foundation · 2024",
+    slug: "odoo-15-to-18-upgrade",
+    title: "Odoo 15 → 18 Upgrade",
+    kicker: "Platform migration · 2024",
     summary:
-      "Before the product work: containerised the build and wired GitHub Actions, taking 40% off deployment time and making release cadence a decision rather than an event.",
+      "Three major versions behind and blocking every new integration. Migrated the core ERP from Odoo 15 to 18 with zero data loss and no disruption to live operations.",
     status: "Shipped",
     priority: "High",
     period: "Dec 2023 – May 2025",
-    team: ["QA (lead)", "Backend", "DevOps"],
-    role: "Implementation lead",
-    stack: ["Docker", "GitHub Actions", "Cypress", "GraphQL"],
+    team: ["QA (lead)", "Backend", "Operations"],
+    role: "Migration lead",
+    stack: ["Odoo", "PostgreSQL", "Python", "Docker"],
     metrics: [
-      { label: "Deployment time", value: "−40%", note: "vs. manual release process" },
+      { label: "Versions jumped", value: "15 → 18", note: "Three major upgrades in one project" },
+      { label: "Data loss", value: "0", note: "Across the full migration" },
       { label: "Post-release defects", value: "−20%", note: "Regression automation" },
-      { label: "Test cases authored", value: "100+", note: "Web and mobile" },
+      { label: "Downtime", value: "Zero", note: "For live operations teams" },
     ],
     problem: {
       heading: "The Problem",
       body: [
-        "Releases were manual, slow and therefore rare — which made every release large and every large release risky. Regression coverage lived in people's heads, so quality depended on who happened to be testing.",
+        "Odoo 15 was three major versions behind, which meant every module customisation had to be re-verified against upstream changes before an upgrade could even be attempted. Newer integrations and vendor modules increasingly required Odoo 17+, so staying on 15 was quietly blocking the operations roadmap.",
+        "A straight version jump from 15 to 18 could not be done in one step — each major Odoo release changes its data model, so the migration had to pass through every intermediate version without corrupting live financial and inventory data.",
       ],
       bullets: [
-        "Manual, environment-dependent deployments",
-        "Release batching that concentrated risk",
-        "No automated regression gate before production",
-        "API responses verified ad hoc rather than systematically",
+        "Three major versions of accumulated schema and module drift",
+        "Custom modules with no guarantee of compatibility past v15",
+        "Operations teams running live on the database being migrated",
+        "No tolerance for data loss on financial and inventory records",
       ],
     },
     architecture: {
       heading: "The Architecture",
+      body: [
+        "The migration ran as a staged upgrade rather than a single cutover — each version hop validated independently before the next began, with a full regression pass at every stage.",
+      ],
       bullets: [
-        "Docker images to make build environments reproducible across machines.",
-        "GitHub Actions pipelines running build, test and deploy stages on every push.",
-        "Cypress and Selenium regression suites wired as a gate, not an afterthought.",
-        "GraphQL query testing to verify API responses and data accuracy across the platform.",
+        "Sequential upgrade path (15 → 16 → 17 → 18) instead of a direct jump, isolating breakage to one version at a time.",
+        "Staging environment mirroring production data for every hop, so failures surfaced before they reached live operations.",
+        "Custom module audit at each version — patched, replaced, or deprecated based on upstream compatibility.",
+        "Full database backups and rollback checkpoints before every stage.",
+        "Regression suite run against core flows (invoicing, inventory, procurement) after each version.",
+      ],
+      table: [
+        ["Stage", "Focus", "Gate"],
+        ["15 → 16", "Module compatibility audit", "Staging regression pass"],
+        ["16 → 17", "Data model migration", "Zero diff on financial totals"],
+        ["17 → 18", "Final cutover rehearsal", "Full regression + rollback tested"],
       ],
     },
     execution: {
       heading: "The Execution",
+      body: [
+        "Each version hop followed the same rhythm: audit, migrate on staging, regress, then cut over — repeated three times rather than attempted as one high-risk leap.",
+      ],
       bullets: [
-        "Containerised the build first, so the pipeline had a stable target to deploy.",
-        "Added stages incrementally — build, then test, then deploy — keeping the team shipping throughout.",
-        "Built the web and mobile test strategy alongside the pipeline so automation had something to run.",
-        "Mentored QA engineers on maintaining suites, so coverage survived handover.",
+        "Audited every custom module for breaking changes before each upgrade, patching or replacing what upstream no longer supported.",
+        "Ran the full migration on a staging clone of production first, comparing record counts and financial totals before and after.",
+        "Built a regression checklist covering the operations team's daily flows, run manually and via automation after every hop.",
+        "Scheduled the final cutover for a low-traffic window with a tested rollback path, so the live database was never at risk without a way back.",
+        "Kept operations informed at each stage so the migration never surprised the people depending on the system daily.",
       ],
     },
     impact: {
       heading: "The Impact",
       body: [
-        "This is the work that made the product role possible. Owning the release pipeline meant later owning what went through it — and being able to unblock engineering directly instead of escalating.",
+        "The upgrade cleared the version debt that was blocking new integrations, without a single record lost or a day of downtime for the teams running on Odoo daily.",
       ],
       bullets: [
-        "40% reduction in deployment time.",
-        "20% fewer post-release defects.",
-        "Release cadence became a product decision rather than an engineering constraint.",
+        "Migrated three major versions with zero data loss on financial and inventory records.",
+        "Unblocked integrations and vendor modules that required Odoo 17+.",
+        "No disruption to live operations — the cutover was invisible to daily users.",
+        "Established a repeatable staged-upgrade playbook for future Odoo version jumps.",
       ],
     },
+    appendix: [
+      {
+        heading: "Why staged, not direct",
+        bullets: [
+          "A direct 15 → 18 jump would have combined three versions' worth of data-model changes into one unverifiable step.",
+          "Staging each hop meant any failure was traceable to a single version, not buried in a three-version diff.",
+        ],
+      },
+    ],
     source: "Résumé — Senior QA Engineer & Associate PM, Suplyd",
+  },
+  {
+    slug: "app-rebrand-v2",
+    title: "App Rebrand: Suplyd V1 → V2",
+    kicker: "Figma design system · 2025",
+    summary:
+      "The app had grown feature by feature for years with no shared visual language holding it together. Led the rebrand from the original Figma file to a new V2.0 system spanning mobile and web.",
+    status: "Shipped",
+    priority: "Medium",
+    period: "2025",
+    team: ["Product / Design (lead)", "Mobile — React Native", "Web — ReactJS"],
+    role: "Design & PM hybrid — design direction, spec ownership, rollout",
+    stack: ["Figma", "React Native", "ReactJS", "Design tokens"],
+    metrics: [
+      { label: "Design system", value: "V1 → V2", note: "New Figma library" },
+      { label: "Surfaces updated", value: "Mobile + web", note: "Single shared visual language" },
+      { label: "Rollout", value: "Phased", note: "By screen, not a single big-bang release" },
+    ],
+    problem: {
+      heading: "The Problem",
+      body: [
+        "The original app had been built out feature by feature over several years, each screen designed to solve its own problem without a shared system holding the whole thing together. Colours, spacing, type scale and component styling had all drifted independently — the app worked, but it didn't feel like one product.",
+        "That inconsistency showed up as friction: new features took longer to design because there was no reusable foundation, and the app read as dated next to newer competitors in the same space.",
+      ],
+      bullets: [
+        "No shared component library — every screen restyled from scratch",
+        "Colour, spacing and type inconsistent across mobile and web",
+        "Slower design turnaround for new features with nothing to reuse",
+        "Visual identity that no longer matched where the brand was heading",
+      ],
+    },
+    architecture: {
+      heading: "The Architecture",
+      body: [
+        "Rather than restyle screens one by one, the rebrand started from a new Figma foundation — a V2.0 file built as a proper design system rather than a flat set of mockups — and every surface was migrated onto it.",
+      ],
+      bullets: [
+        "New design system in Figma: colour tokens, typography scale, spacing units and a reusable component library.",
+        "Component-first approach — buttons, cards, inputs and navigation patterns defined once, then composed into screens.",
+        "Mobile (React Native) and web (ReactJS) mapped to the same token set, so both surfaces read as one brand.",
+        "Old and new component styles allowed to coexist during rollout, so migration didn't have to be a single big-bang release.",
+      ],
+    },
+    execution: {
+      heading: "The Execution",
+      body: [
+        "The rollout moved screen by screen against the new Figma library, prioritising the highest-traffic flows first so the visual gap between old and new was closed where users would notice it most.",
+      ],
+      bullets: [
+        "Audited every existing screen against the new component library to flag what could be swapped directly versus what needed a redesign.",
+        "Sequenced the migration by traffic and visibility — core flows first, edge-case screens last.",
+        "Worked directly in Figma alongside engineering to keep the component library and the shipped implementation in sync.",
+        "Kept the rebrand scoped to visual and component-level change — underlying flows and IA were left untouched unless a screen specifically needed it.",
+      ],
+    },
+    impact: {
+      heading: "The Impact",
+      body: [
+        "The app now reads as one coherent product across mobile and web, and every new feature since has been designed against the V2.0 library instead of from a blank canvas.",
+      ],
+      bullets: [
+        "Single design system now governs both the mobile and web apps.",
+        "New features design faster with a reusable component library instead of one-off styling.",
+        "Visual identity brought in line with where the brand is positioned today.",
+      ],
+    },
+    appendix: [
+      {
+        heading: "Non-goals (scope discipline)",
+        bullets: [
+          "Rebuilding information architecture or navigation — this was a visual and component-level rebrand, not a UX overhaul.",
+          "Redesigning every screen from scratch — reused what already worked, restyled what didn't.",
+        ],
+      },
+    ],
+    source: "Figma — Suplyd App (V1) and Suplyd V2.0 design files",
   },
 ];
 

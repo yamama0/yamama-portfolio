@@ -69,7 +69,7 @@ Nothing on the site is invented filler. Sources:
   (Linear project, priority Urgent, completed Feb 2026).
 - **Analytics Tracking Consistency** — the Mixpanel/WebEngage project in
   `My issues › Created.csv` (6 tickets).
-- **CI/CD Pipeline Automation** — résumé, Senior QA / Associate PM tenure.
+- **Odoo 15 → 18 Upgrade** — résumé, Senior QA / Associate PM tenure.
 - **Hero stats** — computed from the Linear export: 112 tickets authored,
   93 released (83%).
 
