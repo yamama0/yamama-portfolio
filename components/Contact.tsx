@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { profile } from "@/lib/data/profile";
 import { Reveal } from "./ui/Reveal";
 import { DovePattern, Logo } from "./ui/Logo";
@@ -47,6 +47,15 @@ export function Contact() {
             </a>
             <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="btn-outline">
               {profile.phone}
+            </a>
+            <a
+              href={`https://wa.me/${profile.phone.replace(/[\s+]/g, "")}`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-outline group"
+            >
+              <MessageCircle size={15} className="text-gold" />
+              WhatsApp
             </a>
           </div>
         </Reveal>
