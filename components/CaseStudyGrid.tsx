@@ -19,7 +19,7 @@ export function CaseStudyGrid() {
       <div className="shell">
         <SectionHeading
           eyebrow="Case Studies"
-          title="Four problems, and what actually shipped."
+          title="Five problems, and what actually shipped."
           lead="Every case study below is reconstructed from the real artifact — the PRD, the Linear project, the ticket history. Same four questions each time: what was broken, how it was designed, how it was sequenced, what changed."
         />
 

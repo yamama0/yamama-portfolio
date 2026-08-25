@@ -34,8 +34,8 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mohamedyamama.com"),
   title: {
-    default: "Mohamed Yamama — Technical Product Manager & Audio Tech Creator",
-    template: "%s · Mohamed Yamama",
+    default: "Yamama — Technical Product Manager & Audio Tech Creator",
+    template: "%s · Yamama",
   },
   description:
     "Technical Product Manager with an engineering foundation in QA automation and CI/CD. Portfolio of TPM case studies and audio production work.",
@@ -45,12 +45,17 @@ export const metadata: Metadata = {
     "Product Manager Egypt",
     "CI/CD",
     "audio tech",
-    "Mohamed Yamama",
+    "Yamama",
+    "Maqam guitar",
+    "Oriental Metal",
+    "Oud guitar fusion",
+    "The Angry Bird",
+    "Arabic scales metal",
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: "Mohamed Yamama — Technical Product Manager & Audio Tech Creator",
-    description: profile.headline,
+    title: "Yamama — Technical Product Manager & Audio Tech Creator",
+    description: `${profile.headline} Creator of The Angry Bird — a fusion of ancient Maqamat and Heavy Metal guitar.`,
     type: "website",
     locale: "en_US",
   },

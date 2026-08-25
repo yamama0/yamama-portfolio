@@ -78,7 +78,7 @@ export function Hero() {
                   className="transition-transform duration-300 ease-brand group-hover:translate-x-1"
                 />
               </Link>
-              <Link href="/#audio" className="btn-outline group">
+              <Link href="/music" className="btn-outline group">
                 <Play size={15} className="text-gold" />
                 Explore music content
               </Link>

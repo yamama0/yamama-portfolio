@@ -86,7 +86,7 @@ export function Contact() {
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-white/30">
-            <span>© {new Date().getFullYear()} Mohamed Yamama</span>
+            <span>© {new Date().getFullYear()} Yamama</span>
             <span>
               {profile.languages.map((l) => `${l.name} · ${l.level}`).join("   /   ")}
             </span>
