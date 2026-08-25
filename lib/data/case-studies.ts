@@ -127,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
     ],
-    source: "PRD — Consolidated Financial Dashboard v1.0, Mohamed Yamama, Jun 2025",
+    source: "PRD — Consolidated Financial Dashboard v1.0, Yamama, Jun 2025",
   },
   {
     slug: "data-cleansing-onboarding",

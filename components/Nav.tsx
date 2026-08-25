@@ -9,8 +9,8 @@ import { Logo } from "./ui/Logo";
 const links = [
   { href: "/#about", label: "About" },
   { href: "/#case-studies", label: "Case studies" },
-  { href: "/#audio", label: "Audio" },
   { href: "/#experience", label: "Experience" },
+  { href: "/music", label: "Music" },
 ];
 
 export function Nav() {
@@ -44,11 +44,11 @@ export function Nav() {
         <Link
           href="/"
           className="flex items-center gap-3 text-gold"
-          aria-label="Mohamed Yamama — home"
+          aria-label="Yamama — home"
         >
           <Logo className="h-6 w-auto" />
           <span className="hidden font-display text-sm font-bold tracking-wide text-white sm:block">
-            Mohamed Yamama
+            Yamama
           </span>
         </Link>
 

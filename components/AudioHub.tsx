@@ -52,6 +52,14 @@ export function AudioHub() {
           lead="The producer half of the practice. Studio breakdowns, sound design walkthroughs, and short-form technique clips — the same instinct for hierarchy and restraint that shows up in the product work."
         />
 
+        <p className="-mt-8 mb-12 text-sm text-white/45 sm:-mt-12 sm:mb-16">
+          The Oud & Guitar entry in The Rig is the foundation of{" "}
+          <a href="#angry-bird" className="text-gold underline underline-offset-4 hover:text-gold-300">
+            The Angry Bird
+          </a>{" "}
+          fusion project — see below.
+        </p>
+
         <div className="grid gap-5 lg:grid-cols-3">
           {releases.map((r, i) => (
             <Reveal key={r.title} i={i} as="article" className="card card-hover overflow-hidden">

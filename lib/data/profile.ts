@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Mohamed Yamama",
+  name: "Yamama",
   role: "Technical Product Manager",
   altRole: "Audio Tech Creator",
   location: "New Cairo, Egypt",
@@ -10,7 +10,7 @@ export const profile = {
   github: "https://github.com/yamama0",
   creatorHandle: "@llyamamall",
   headline: "Bridging the Gap Between Engineering Execution and Audio Innovation.",
-  subheadline: "Mohamed Yamama | Technical Product Manager & Audio Tech Creator",
+  subheadline: "Yamama | Technical Product Manager & Audio Tech Creator",
   availability:
     "Open to global remote roles and relocation.",
   languages: [
