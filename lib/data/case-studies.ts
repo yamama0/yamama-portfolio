@@ -443,6 +443,244 @@ export const caseStudies: CaseStudy[] = [
     ],
     source: "Figma — Suplyd App (V1) and Suplyd V2.0 design files",
   },
+  {
+    slug: "dsquares-loyalty-wallet-engine",
+    title: "Dsquares Loyalty: Transparent Wallet & Earning Engine",
+    kicker: "Strategic PRD · 2024",
+    summary:
+      "Users were logging in at scale but converting at only 70% — and support was drowning in expired-voucher tickets. Rebuilt the rewards layer as a utility-first transaction companion with explicit state, real-time criteria, and graceful cart validation.",
+    status: "Shipped",
+    priority: "High",
+    period: "2024",
+    team: [
+      "Delivery Product Owner (author)",
+      "Mobile — iOS & Android",
+      "Backend",
+      "QA",
+      "Compliance",
+      "Retail brand partners",
+    ],
+    role: "Delivery Product Owner — wrote the PRD, ran RICE prioritization, owned the Gherkin acceptance criteria, sequenced releases across multi-brand partners",
+    stack: [
+      "PostgreSQL",
+      "Metabase",
+      "Mixpanel / Amplitude",
+      "Push notifications",
+      "POS webhooks",
+      "ISO 8601 UTC time normalization",
+    ],
+    metrics: [
+      { label: "Activation target", value: "70% → 85%", note: "Login → first transaction conversion" },
+      { label: "Support overhead", value: "−40%", note: "Tickets tagged 'Expired Benefits' / 'Invalid Codes'" },
+      { label: "API latency", value: "< 200ms", note: "Cart validation p95" },
+      { label: "RICE winner", value: "Init. 2", note: "Real-Time Wallet & State Engine" },
+    ],
+    problem: {
+      heading: "The Problem",
+      body: [
+        "The loyalty app had strong reach — most logged-in users browsed for extended sessions — yet only 70% of them converted into an actual transaction. The application behaved like a passive catalog, leaving users in a state of decision paralysis when faced with high-value but abstract offers.",
+        "In parallel, support was spending an outsized share of its week answering the same two questions: why is my voucher expired, and why is this code already used. Both complaints traced back to the same root cause — users could not see the rules that governed their benefits, and the cart validation API failed loudly on edge cases rather than recovering gracefully.",
+      ],
+      bullets: [
+        "30% drop-off between login and first transaction — the activation chasm",
+        "No structural urgency or transparent earning logic to nudge browsing toward action",
+        "Users unaware of voucher expiration windows and minimum-spend criteria until failure at checkout",
+        "Cart validation API hitting race conditions during peak traffic and disconnected retail POS states",
+        "Repeated support tickets that the application itself could have prevented",
+      ],
+    },
+    architecture: {
+      heading: "The Architecture",
+      body: [
+        "The redesign shifted the app from a passive catalog into an active, utility-focused transaction companion. Instead of rebuilding the catalog, three initiatives were evaluated against the RICE framework and sequenced by impact, not by elegance.",
+      ],
+      bullets: [
+        "Initiative 1 — Transparent Earning Ledger: a clean, tabular UI on the home screen detailing exactly how points are computed across different retail brands, removing calculation confusion during browsing.",
+        "Initiative 2 — Real-Time Wallet & State Engine (the chosen focus): a full wallet overhaul replacing static lists with explicit utility-driven states ('Active,' 'Expiring in X Hours,' 'Criteria Not Met'), paired with time-sensitive push alerts before vouchers lapse.",
+        "Initiative 3 — Proactive Cart Error Guard: enhanced cart validation API that gracefully degrades on edge-case failures — caching token states locally and surfacing clear, actionable error messages instead of generic crashes.",
+        "API synchronization via webhooks between retail brand POS networks and the loyalty core, so an offline redemption propagates to the app database instantly and prevents 'already used code' replay attacks.",
+        "ISO 8601 UTC timestamp normalization across multi-brand databases, so a user's app and a brand's backend agree on whether a voucher is still active.",
+        "Intelligent local caching of voucher criteria rules for sub-200ms cart validation feedback, even during partner-server micro-downtimes.",
+      ],
+      table: [
+        ["Initiative", "Reach", "Impact", "Confidence", "Effort (pw)", "RICE"],
+        ["1 — Earning Ledger", "8", "1.5", "80%", "2", "4.8"],
+        ["2 — Real-Time Wallet Engine 🏆", "9", "2.5", "90%", "4", "5.06"],
+        ["3 — Cart Error Guard", "4", "2.0", "70%", "3", "1.86"],
+      ],
+    },
+    execution: {
+      heading: "The Execution",
+      body: [
+        "Initiative 2 was selected first because it directly addressed the activation drop-off while systematically clearing the support ticket backlog — high reach combined with straightforward backend logic. The work was scoped from a single user story, expressed in Gherkin syntax that engineering could split into Linear/Jira epics.",
+      ],
+      bullets: [
+        "User story: 'As a loyalty app user, I want to view the exact expiration countdown and required purchasing criteria of my vouchers directly inside my wallet, so that I can confidently complete my transaction before my benefits expire without encountering cart errors.'",
+        "Scenario — Active voucher near expiry: given the user is in 'My Wallet,' when a voucher is within 48 hours of expiration, then a high-visibility countdown renders (e.g., 'Expires in 23h 14m') alongside brand criteria (e.g., 'Valid on online orders over 500 EGP').",
+        "Scenario — Unfulfilled criteria at cart: given the cart totals 300 EGP, when the user applies a voucher requiring a minimum spend of 500 EGP, then the API returns 'Add 200 EGP more to unlock this voucher' and blocks an invalid payload from reaching the partner POS.",
+        "Three Amigos alignment sessions (PO, QA Lead, Tech Lead) before sprint planning ensured edge cases in the data layer were accounted for before any code was written.",
+        "Phased rollout isolated the new wallet engine to a single retail brand ecosystem first to monitor technical stability before wide-scale release.",
+      ],
+    },
+    impact: {
+      heading: "The Impact",
+      body: [
+        "The wallet stopped being a list and became a decision surface. Browsing users could see exactly what to do next, and the cart stopped being a place where benefits died.",
+      ],
+      bullets: [
+        "Primary KPI — Login → first transaction conversion moving from the 70% baseline toward an 85% target.",
+        "Operational KPI — 40% reduction in support tickets tagged 'Expired Benefits' or 'Invalid Codes' within the first 30 days of full release.",
+        "System KPI — Cart code validation latency held under 200ms at p95, even during peak traffic.",
+        "Trust KPI — 'Already used code' complaints replaced by proactive push alerts before vouchers lapse.",
+      ],
+    },
+    appendix: [
+      {
+        heading: "Why Initiative 2 over Initiative 1",
+        bullets: [
+          "Higher reach — most logged-in users already visited this surface daily.",
+          "Directly addresses both the activation chasm and the support backlog in a single release.",
+          "Cleaner backend contract — state-machine validation rather than visual redesign work.",
+        ],
+      },
+      {
+        heading: "Cross-system blockers cleared",
+        bullets: [
+          "POS webhook propagation delays — solved with real-time push endpoints and idempotent redemption tokens.",
+          "Multi-brand time-zone drift — normalized to ISO 8601 UTC across databases.",
+          "Partner-server latency on cart validation — cached criteria rules locally with explicit fallback states.",
+        ],
+      },
+    ],
+    source: "Strategic PRD — Loyalty Application Optimization, Yamama, 2024",
+  },
+  {
+    slug: "ai-food-support-assistant",
+    title: "AI-Powered Food Order Support Assistant",
+    kicker: "TPO / SM Assessment · Sep 2026",
+    summary:
+      "Support agents were drowning in manual lookups across five systems for every ticket. Delivered a human-in-the-loop AI assistant — context aggregation, PII masking, grounded 3-sentence summaries, categorized next-best-actions — with agents always owning the final decision.",
+    status: "In flight",
+    priority: "Urgent",
+    period: "Sep 2026 – Dec 2026 (12 weeks / 3 releases)",
+    team: [
+      "Technical Product Owner / Scrum Master (author)",
+      "Backend / API gateway",
+      "AI engineering",
+      "QA",
+      "Compliance",
+      "Support operations",
+    ],
+    role: "Technical Product Owner & Scrum Master — wrote the functional + non-functional requirements, drove MoSCoW + WSJF sequencing, owned GDPR sign-off as a release gate, facilitated Three Amigos and retros",
+    stack: [
+      "Enterprise GPT API (zero-retention tier)",
+      "React / Vue SPA agent portal",
+      "REST integrations (5 systems)",
+      "OAuth 2.0 + RBAC",
+      "PostgreSQL audit log",
+      "Adapter pattern + circuit breakers",
+    ],
+    metrics: [
+      { label: "AHT reduction", value: "−30%", note: "vs baseline (target)" },
+      { label: "FCR improvement", value: "+10 pts", note: "vs baseline (target)" },
+      { label: "Recommendation acceptance", value: "≥ 70%", note: "Approved without modification" },
+      { label: "Hallucination rate", value: "≤ 2%", note: "QA audit sampling" },
+    ],
+    problem: {
+      heading: "The Problem",
+      body: [
+        "Support teams were handling thousands of food-order inquiries every week. Before responding, agents manually reviewed order details, delivery status, payment information, and prior interactions across five separate systems. The result was long handling times, inconsistent resolutions, and lower CSAT — with the stated business target being a 30% reduction in AHT and an FCR improvement.",
+        "Building an AI assistant is the obvious answer; doing it without leaking PII, hallucinating policy, or removing human accountability is the hard part. The assessment defined the MVP that ships in three months while keeping agents in full control of every customer-facing decision.",
+      ],
+      bullets: [
+        "Manual context gathering across five systems was the single largest AHT driver",
+        "Existing solutions either skip PII protection or auto-execute customer-facing actions",
+        "Outdated delivery status silently corrupts downstream refund recommendations",
+        "Baseline AHT / FCR, PII field list, and AI provider policy all undecided at kickoff",
+      ],
+    },
+    architecture: {
+      heading: "The Architecture",
+      body: [
+        "Every inquiry becomes a case. The platform fans out to five REST APIs in parallel, masks PII before any external transmission, and sends a minimized payload to an enterprise GPT API on a zero-retention tier. The model returns a grounded 3-sentence summary and a categorized next-best-action — never an executed decision. Agents validate, edit, or override every recommendation in a unified web portal.",
+      ],
+      bullets: [
+        "Agent Portal SPA — summary card on top, categorized NBA below, raw-context toggle always one click away for verification.",
+        "API Gateway — OAuth 2.0 + RBAC at the edge, throttling, tracing, and circuit breakers per integration.",
+        "Aggregation Service — parallel fan-out across ordering, delivery, payment/refund, CRM and support APIs, normalized into one schema with per-API timeout and graceful fallback.",
+        "Data Sanitizer — regex / NLP masking layer replacing names, emails, phone numbers, addresses, and payment references with [TOKEN] before any payload leaves the boundary.",
+        "Generative AI Middleware — versioned prompt templates, JSON schema enforcement for the six allowed NBA categories, confidence scoring, automatic fallback on schema violation or timeout.",
+        "Feedback & Audit Service — append-only, tamper-evident log of every approve / reject / override event feeding both the operational dashboard and the eval harness.",
+        "ISO 8601 timestamps + freshness guards (≤ 5 min since last update) — stale data blocks refund recommendations before they render.",
+      ],
+      table: [
+        ["API", "Data", "Auth", "Timeout", "Failure handling", "Risk"],
+        ["Ordering", "Items, value, restaurant, placed time", "OAuth 2.0", "2s", "Unavailable panel + retry; snapshot data", "Med"],
+        ["Delivery Tracking", "Status, courier, ETA, last-update ts", "OAuth 2.0", "2s", "Last-known-good + STALE badge; ≥ 5 min blocks refund NBA", "HIGH"],
+        ["Payment / Refund", "Status, refund status, reference", "mTLS", "3s", "Masked references only; refund NBA disabled on failure; never raw PAN", "HIGH"],
+        ["CRM", "Last 5 interactions, notes, segments", "OAuth 2.0", "1s", "No-history state; informational only — never a fact source", "Low"],
+        ["Customer Support", "Case data, prior tickets", "OAuth 2.0", "2s", "Local queue + async retry on write failure", "Med"],
+      ],
+    },
+    execution: {
+      heading: "The Execution",
+      body: [
+        "Three monthly releases gated by MoSCoW + WSJF. Sprint boards were strictly Must-Have-only; anything else was refined for the next sprint. Fully automated refund / cancellation execution was explicitly Won't-Have to preserve the human-in-the-loop constraint.",
+      ],
+      bullets: [
+        "R1 — Foundation (W1–W4): API gateway, adapters for all five systems, unified JSON schema, normalization + timeout fallbacks, freshness guard v1, compliance spike on masking architecture.",
+        "R2 — AI Engine & Core UI (W5–W8): PII masking layer compliance-approved, LLM integration on the zero-retention tier, prompt engineering + eval harness, React portal with summary card, NBA, raw-context toggle.",
+        "R3 — Feedback & Go-Live (W9–W12): override / feedback capture, immutable audit log, KPI dashboard, UAT with 10–20 pilot agents, GDPR audit, production deploy + hypercare.",
+        "Three Amigos sessions (PO, QA Lead, Tech Lead) before each sprint planning to map edge cases in the data layer before writing code.",
+        "Critical defect (outdated delivery status) was logged as the highest-priority bug + impediment and swarmed with paired dev + QA until regression coverage landed.",
+        "Stakeholder dashboard request mid-sprint was logged to backlog, declined for the current sprint, and explicitly targeted post-MVP to protect the goal.",
+      ],
+    },
+    impact: {
+      heading: "The Impact",
+      body: [
+        "The release removes the single largest AHT driver — manual context gathering across five systems — and standardizes decision quality across agents, while preserving the GDPR posture and keeping humans in charge of every customer-facing action.",
+      ],
+      bullets: [
+        "Business KPI — AHT reduction ≥ 30% vs baseline; FCR improvement ≥ +10 pts vs baseline.",
+        "Operational KPI — portal uptime ≥ 99.9%, gateway latency ≤ 300ms p95, third-party timeout rate ≤ 1%.",
+        "AI Quality KPI — recommendation acceptance ≥ 70% (approved unmodified), hallucination rate ≤ 2% (QA sampling), summary adherence ≥ 95% (grounded, ≤ 3 sentences).",
+        "Compliance KPI — zero GDPR incidents, append-only audit retained ≥ 12 months, DPIA signed before go-live.",
+        "Adoption KPI — ≥ 80% of pilot agents daily-active by W12; ≥ 90% feedback / override completion on rejections.",
+      ],
+    },
+    appendix: [
+      {
+        heading: "Fallback behavior matrix",
+        bullets: [
+          "Delivery data stale (≥ 5 min) — STALE badge; refund NBA suppressed; 'Data stale — escalate manually' shown.",
+          "Payment API unavailable — refund NBA disabled; 'Payment status unknown — escalate' shown; non-refund actions proceed.",
+          "AI confidence low — caution label + raw-context toggle highlighted; agent decision still possible.",
+          "Required data missing — 'Unavailable' panel + retry; AI prompted only with what exists; summary notes the gap.",
+          "Systems disagree — source-of-truth hierarchy applied (ordering / delivery / payment over CRM); conflict surfaced to the agent explicitly.",
+          "AI service outage / timeout — circuit breaker opens; portal switches to manual-template mode with raw context; requests replayed async. Agent is never blocked.",
+        ],
+      },
+      {
+        heading: "Top risks and mitigations",
+        bullets: [
+          "Outdated delivery status — freshness guard + read-time validation + regression tests (TPO + Eng).",
+          "AI hallucination from misread / missing data — masked-but-complete context, strict JSON schemas, confidence scores, rules validation (AI Eng).",
+          "GDPR / payment-reference exposure — tokenization pre-LLM, zero-retention DPA, audit logs, DPIA before go-live (Compliance).",
+          "Agent adoption resistance — shadowing sessions, raw-context toggle, feedback loop, agent champions (TPO + Ops).",
+        ],
+      },
+      {
+        heading: "AI model decision",
+        bullets: [
+          "Recommended: Option A — External enterprise GPT API on a zero-retention tier, protected by a backend PII masking / tokenization layer and a signed DPA.",
+          "Rationale: 3-month deadline makes internal LLM deployment unfeasible; zero-retention keeps GDPR posture defensible.",
+          "Exit path: model-abstraction layer so a future swap to an internal LLM is configuration, not a rewrite.",
+        ],
+      },
+    ],
+    source: "TPO / SM Assessment — AI-Powered Food Order & Customer Support Assistant, Yamama, Sep 2026",
+  },
 ];
 
 export const getCaseStudy = (slug: string) =>
