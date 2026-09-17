@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { PageTransition } from "@/components/PageTransition";
@@ -99,6 +101,8 @@ export default function RootLayout({
         <main id="main">
           <PageTransition>{children}</PageTransition>
         </main>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
