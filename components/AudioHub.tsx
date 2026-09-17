@@ -53,7 +53,8 @@ export function AudioHub() {
         />
 
         <p className="-mt-8 mb-12 text-sm text-white/45 sm:-mt-12 sm:mb-16">
-          The Oud & Guitar entry in The Rig is the foundation of{" "}
+          The Oud paired with the Schecter (drop-tuned metal) and the Zoom G6 FX
+          in The Rig is the foundation of{" "}
           <a href="#angry-bird" className="text-gold underline underline-offset-4 hover:text-gold-300">
             The Angry Bird
           </a>{" "}
@@ -63,7 +64,7 @@ export function AudioHub() {
         <div className="grid gap-5 lg:grid-cols-3">
           {releases.map((r, i) => (
             <Reveal key={r.title} i={i} as="article" className="card card-hover overflow-hidden">
-              <div className="relative aspect-video border-b border-hairline bg-charcoal-950">
+              <div className="relative aspect-[9/16] border-b border-hairline bg-charcoal-950">
                 {r.embedId ? (
                   <iframe
                     className="absolute inset-0 h-full w-full"
@@ -136,17 +137,39 @@ export function AudioHub() {
               The rig
             </h3>
           </div>
-          <ul className="mt-7 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
-            {audioStack.map((k) => (
-              <li key={k.name} className="bg-charcoal-900 p-5">
-                <p className="font-display text-base font-bold text-white">{k.name}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-gold/80">
-                  {k.role}
-                </p>
-                <p className="mt-3 text-[13px] leading-relaxed text-white/45">{k.note}</p>
-              </li>
-            ))}
-          </ul>
+
+          <div className="mt-8 space-y-10">
+            {audioStack.map((group) => {
+              const cols =
+                group.category === "Instruments"
+                  ? "sm:grid-cols-2 lg:grid-cols-3"
+                  : "sm:grid-cols-2";
+              return (
+                <div key={group.category}>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-white/35">
+                    {group.category}
+                  </p>
+                  <ul
+                    className={`mt-4 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline ${cols}`}
+                  >
+                    {group.items.map((k) => (
+                      <li key={k.name} className="bg-charcoal-900 p-5">
+                        <p className="font-display text-base font-bold text-white">
+                          {k.name}
+                        </p>
+                        <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-gold/80">
+                          {k.role}
+                        </p>
+                        <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                          {k.note}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </Reveal>
       </div>
     </section>
