@@ -76,8 +76,29 @@ export const skillGroups = [
 ] as const;
 
 export const audioStack = [
-  { name: "Ableton Live", role: "DAW / arrangement", note: "Primary production environment" },
-  { name: "Focusrite Scarlett 2i2", role: "Audio interface", note: "Tracking guitar & vocals" },
-  { name: "Novation Launchkey", role: "MIDI controller", note: "Keys, drums, automation" },
-  { name: "Oud & Guitar", role: "Instruments", note: "Arabic maqam meets Western harmony" },
+  {
+    category: "DAW & Interface",
+    items: [
+      { name: "Ableton Live", role: "DAW / arrangement", note: "Primary production environment" },
+      { name: "Focusrite Scarlett 2i2", role: "Audio interface", note: "Tracking guitars, oud & vocals" },
+    ],
+  },
+  {
+    category: "Signal Chain & Control",
+    items: [
+      { name: "Zoom G6 Multieffects", role: "Tone & FX", note: "Tone shaping and FX for the electrics" },
+      { name: "Novation Launchkey", role: "MIDI controller", note: "Keys, drums, automation" },
+    ],
+  },
+  {
+    category: "Instruments",
+    items: [
+      { name: "Cort Jade 1E-AW", role: "Acoustic", note: "Main acoustic — rhythm and foundation" },
+      { name: "Schecter C1 Platinum", role: "Drop-tuned metal", note: "The darkest, heaviest riffs" },
+      { name: "Ibanez RG 421", role: "Lead", note: "Soloing and balanced playing" },
+      { name: "Squier Telecaster Affinity", role: "Clean tones", note: "Jazz, rock and pop" },
+      { name: "Epiphone Les Paul SL", role: "Rock", note: "Rock rhythm and crunch" },
+      { name: "Oud", role: "Oriental lead", note: "Arabic maqam and oriental phrasing" },
+    ],
+  },
 ] as const;
