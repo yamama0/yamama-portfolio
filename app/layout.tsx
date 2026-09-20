@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Montserrat, Poppins, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -6,6 +7,8 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { PageTransition } from "@/components/PageTransition";
 import { profile } from "@/lib/data/profile";
+
+const GA_MEASUREMENT_ID = "G-L9VKJEMNM6";
 
 /**
  * Agate-Bold and ITC Avant Garde Gothic Std are licensed faces and cannot
@@ -91,6 +94,18 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable} dark`}
     >
       <body className="min-h-screen bg-ink">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink"
