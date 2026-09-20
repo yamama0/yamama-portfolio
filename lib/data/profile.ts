@@ -1,10 +1,27 @@
 import {
+  Award,
   BarChart3,
   BookText,
+  Boxes,
+  CheckCheck,
+  ClipboardList,
+  Code,
+  Container,
+  Database,
   Figma,
+  FileText,
+  FlaskConical,
+  Gauge,
+  ListChecks,
   ListTodo,
+  Map,
   MessageCircle,
   MessageSquare,
+  Plug,
+  Repeat,
+  Smartphone,
+  Sparkles,
+  Users,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -39,46 +56,44 @@ export const stats = [
   { value: "13+", label: "Years on instruments", detail: "Composer & producer" },
 ] as const;
 
-export type ToolItem = {
+export type SkillItem = {
   name: string;
   note?: string;
   icon: LucideIcon;
 };
 
-export type SkillItem = string | ToolItem;
-
 export const skillGroups: { title: string; items: readonly SkillItem[] }[] = [
   {
     title: "Product",
     items: [
-      "Technical roadmap planning",
-      "PRDs & user stories",
-      "Requirements gathering",
-      "Stakeholder management",
-      "Agile / Scrum",
-      "Backlog grooming",
+      { name: "Roadmap planning", icon: Map },
+      { name: "PRDs & user stories", icon: FileText },
+      { name: "Requirements gathering", icon: ClipboardList },
+      { name: "Stakeholder management", icon: Users },
+      { name: "Agile / Scrum", icon: Repeat },
+      { name: "Backlog grooming", icon: ListChecks },
     ],
   },
   {
     title: "Technical",
     items: [
-      "CI/CD (GitHub Actions, Docker)",
-      "REST & GraphQL APIs",
-      "SQL (basic), MongoDB",
-      "AI/ML integration concepts",
-      "React Native & ReactJS delivery",
-      "Odoo data modelling",
+      { name: "CI/CD", note: "GitHub Actions, Docker", icon: Container },
+      { name: "REST & GraphQL APIs", icon: Code },
+      { name: "Databases", note: "SQL, MongoDB", icon: Database },
+      { name: "AI/ML integration", icon: Sparkles },
+      { name: "React Native & ReactJS", icon: Smartphone },
+      { name: "Odoo data modelling", icon: Boxes },
     ],
   },
   {
     title: "Quality",
     items: [
-      "Cypress & Selenium automation",
-      "End-to-end test strategy",
-      "API testing (Postman, REST-Assured)",
-      "Performance (JMeter, LoadRunner)",
-      "ISTQB Certified Tester",
-      "Mobile app testing",
+      { name: "Cypress & Selenium automation", icon: FlaskConical },
+      { name: "End-to-end test strategy", icon: CheckCheck },
+      { name: "API testing", note: "Postman, REST-Assured", icon: Plug },
+      { name: "Performance", note: "JMeter, LoadRunner", icon: Gauge },
+      { name: "ISTQB Certified Tester", icon: Award },
+      { name: "Mobile app testing", icon: Smartphone },
     ],
   },
   {

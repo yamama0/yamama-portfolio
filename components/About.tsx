@@ -1,11 +1,7 @@
 import { education, certifications } from "@/lib/data/experience";
-import { skillGroups, type ToolItem } from "@/lib/data/profile";
+import { skillGroups } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
-
-function isToolItem(it: string | ToolItem): it is ToolItem {
-  return typeof it !== "string";
-}
 
 export function About() {
   return (
@@ -13,49 +9,25 @@ export function About() {
       <div className="shell">
         <SectionHeading
           eyebrow="The Operator"
-          title="An engineer's hands, a product manager's judgement, a musician's ear."
+          title="QA's discipline, a product manager's judgement."
         />
 
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <div className="space-y-6 text-base leading-relaxed text-white/65 sm:text-[1.0625rem]">
             <p>
-              I trained as a{" "}
-              <strong className="font-semibold text-white">
-                mechatronics engineer
-              </strong>{" "}
-              — sensors, actuators, control loops, and a graduation project that
-              put an autonomous guided vehicle inside a hospital where getting
-              it wrong had consequences. That's where the instinct came from:
-              systems fail at the interfaces, so specify the interfaces.
+              I came into software through <strong className="font-semibold text-white">QA</strong> — the
+              best on-ramp to product I could have asked for. Writing 100+ test
+              cases teaches you that a requirement without an observable outcome
+              isn't one. Then I built the pipeline that runs them — Docker, GitHub
+              Actions, regression suites — and{" "}
+              <strong className="font-semibold text-white">cut deployment time by 40%</strong>.
             </p>
             <p>
-              I entered software through QA, which turned out to be the best
-              possible on-ramp to product. Writing 100+ test cases teaches you
-              that a requirement without an observable outcome isn't a
-              requirement. Then I built the delivery pipeline itself — Docker
-              images, GitHub Actions, regression suites — and took{" "}
-              <strong className="font-semibold text-white">
-                40% off deployment time
-              </strong>
-              . Owning the pipe is how I earned the right to decide what goes
-              through it.
-            </p>
-            <p>
-              Today I run discovery-to-release at Suplyd: 112 tickets authored,
-              Mixpanel funnels as the tiebreaker, and PRDs written so engineers
-              don't have to guess. When something is blocked on a GraphQL
-              response shape or a Docker build, I read the error rather than
-              forward it.
-            </p>
-            <p>
-              The other half is{" "}
-              <strong className="font-semibold text-white">
-                13+ years as a musician and producer
-              </strong>
-              . Mixing is product work in disguise: you cannot make everything
-              loud. You decide what the listener needs to hear first, cut what
-              competes with it, and ship a balance rather than a wishlist. That's
-              the same muscle as a roadmap.
+              Today I run discovery-to-release at Suplyd:{" "}
+              <strong className="font-semibold text-white">112 tickets authored</strong>,
+              Mixpanel funnels as the tiebreaker, PRDs that leave engineers
+              nothing to guess at. If it's blocked on a GraphQL response shape
+              or a Docker build, I read the error rather than forward it.
             </p>
           </div>
 
@@ -66,37 +38,23 @@ export function About() {
                   <h3 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
                     {g.title}
                   </h3>
-                  <ul className="mt-4 space-y-2">
-                    {g.items.map((it) => {
-                      const key = typeof it === "string" ? it : it.name;
-                      return isToolItem(it) ? (
-                        <li
-                          key={key}
-                          className="flex items-center gap-2.5 text-[13px] leading-snug text-white/70"
-                        >
-                          <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md border border-hairline bg-charcoal-900 text-gold/80">
-                            <it.icon size={13} strokeWidth={1.75} />
-                          </span>
-                          <span>
-                            <span className="text-white">{it.name}</span>
-                            {it.note ? (
-                              <span className="text-white/40"> · {it.note}</span>
-                            ) : null}
-                          </span>
-                        </li>
-                      ) : (
-                        <li
-                          key={key}
-                          className="flex gap-2.5 text-[13px] leading-snug text-white/60"
-                        >
-                          <span
-                            aria-hidden
-                            className="mt-[7px] h-1 w-1 flex-none rounded-full bg-gold/60"
-                          />
-                          {it}
-                        </li>
-                      );
-                    })}
+                  <ul className="mt-4 space-y-2.5">
+                    {g.items.map((it) => (
+                      <li
+                        key={it.name}
+                        className="flex items-center gap-2.5 text-[13px] leading-snug text-white/70"
+                      >
+                        <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md border border-hairline bg-charcoal-900 text-gold/80">
+                          <it.icon size={13} strokeWidth={1.75} />
+                        </span>
+                        <span>
+                          <span className="text-white">{it.name}</span>
+                          {it.note ? (
+                            <span className="text-white/40"> · {it.note}</span>
+                          ) : null}
+                        </span>
+                      </li>
+                    ))}
                   </ul>
                 </Reveal>
               ))}
