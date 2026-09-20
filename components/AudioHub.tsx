@@ -13,6 +13,14 @@ import { Reveal } from "./ui/Reveal";
 import { Waveform } from "./ui/Waveform";
 
 /**
+ * 8×13 charcoal tile used as the blur placeholder while each reel
+ * thumbnail streams in — keeps the layout stable and gives the eye
+ * something darker than the page background to settle on.
+ */
+const REEL_BLUR =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4IDEzIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjMxZjIwIi8+PC9zdmc+";
+
+/**
  * Featured Instagram Reels. The featured grid is intentionally a single
  * platform (Instagram) — the other platforms are surfaced through the
  * "Find me on" pill row below so we don't have to maintain per-platform
@@ -98,6 +106,10 @@ export function AudioHub() {
                     alt={r.title}
                     fill
                     sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw"
+                    quality={65}
+                    priority={i < 2}
+                    placeholder="blur"
+                    blurDataURL={REEL_BLUR}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
