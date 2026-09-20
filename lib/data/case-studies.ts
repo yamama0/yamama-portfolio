@@ -688,6 +688,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     source: "Résumé — Senior QA Engineer & Associate PM, Suplyd",
+  },
 ];
 
 export const getCaseStudy = (slug: string) =>
