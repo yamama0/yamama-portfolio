@@ -102,3 +102,26 @@ export const audioStack = [
     ],
   },
 ] as const;
+
+export const socials = [
+  {
+    platform: "Instagram",
+    handle: "@llyamamall",
+    url: "https://www.instagram.com/llyamamall/",
+  },
+  {
+    platform: "YouTube",
+    handle: "@llyamamall",
+    url: "https://www.youtube.com/@llyamamall",
+  },
+  {
+    platform: "Facebook",
+    handle: "Yamama",
+    url: "https://www.facebook.com/profile.php?id=61571549683342",
+  },
+  {
+    platform: "TikTok",
+    handle: "@llyamamall",
+    url: "https://www.tiktok.com/@llyamamall?lang=en",
+  },
+] as const;

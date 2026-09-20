@@ -1,41 +1,56 @@
-import Image from "next/image";
-import { Instagram, Music4, Play, Radio, Youtube } from "lucide-react";
-import { audioStack, profile } from "@/lib/data/profile";
+import {
+  Facebook,
+  Instagram,
+  Music4,
+  Play,
+  Youtube,
+  type LucideIcon,
+} from "lucide-react";
+import { audioStack, profile, socials } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 import { Waveform } from "./ui/Waveform";
 
 /**
- * Replace `embedId` with real YouTube IDs (or a TikTok oEmbed URL) as
- * content ships. Until then each tile renders as a labelled placeholder
- * rather than an empty black rectangle.
+ * Featured Instagram Reels. The featured grid is intentionally a single
+ * platform (Instagram) — the other platforms are surfaced through the
+ * "Find me on" pill row below so we don't have to maintain per-platform
+ * embeds that drift out of date.
  */
 const releases = [
   {
     title: "Is Metal Satanic?",
-    platform: "Instagram" as const,
     length: "01:27",
-    embedId: null as string | null,
-    link: "https://www.instagram.com/p/C6_xkllN_9w/" as string | null,
-    thumbnail: "/instagram-black-metal.jpg" as string | null,
+    link: "https://www.instagram.com/reel/C6_xkllN_9w/",
   },
   {
-    title: "Islamic Metal",
-    platform: "YouTube" as const,
-    length: "00:58",
-    embedId: "f8320xoD9zo" as string | null,
-    link: null as string | null,
-    thumbnail: null as string | null,
+    title: "Palm Muted Chords",
+    length: "00:42",
+    link: "https://www.instagram.com/reel/DKc2OGXNpny/",
   },
   {
-    title: "Why Metallica's most famous riff still holds up",
-    platform: "TikTok" as const,
-    length: "00:36",
-    embedId: null as string | null,
-    link: "https://www.tiktok.com/@llyamamall/video/7315779606538145030" as string | null,
-    thumbnail: "/tiktok-metallica-cover.jpg" as string | null,
+    title: "Future Music Guide Collab",
+    length: "00:55",
+    link: "https://www.instagram.com/reel/DdZcu5ziMD8/",
   },
-];
+  {
+    title: "Nothing Else Matters — Story",
+    length: "01:12",
+    link: "https://www.instagram.com/reel/C1NTu2bt01O/",
+  },
+  {
+    title: "This I Love (Guitar Solo)",
+    length: "00:48",
+    link: "https://www.instagram.com/reel/DIUZUEYtpX_/",
+  },
+] as const;
+
+const platformIcon: Record<string, LucideIcon> = {
+  Instagram,
+  YouTube: Youtube,
+  Facebook,
+  TikTok: Music4,
+};
 
 export function AudioHub() {
   return (
@@ -61,67 +76,62 @@ export function AudioHub() {
           fusion project — see below.
         </p>
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        {/* ---------- Featured Reels ---------- */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {releases.map((r, i) => (
             <Reveal key={r.title} i={i} as="article" className="card card-hover overflow-hidden">
-              <div className="relative aspect-[9/16] border-b border-hairline bg-charcoal-950">
-                {r.embedId ? (
-                  <iframe
-                    className="absolute inset-0 h-full w-full"
-                    src={`https://www.youtube-nocookie.com/embed/${r.embedId}`}
-                    title={r.title}
-                    loading="lazy"
-                    allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : r.link ? (
-                  <a
-                    href={r.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group relative flex h-full items-center justify-center overflow-hidden"
-                  >
-                    {r.thumbnail && (
-                      <Image
-                        src={r.thumbnail}
-                        alt={r.title}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, 100vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    )}
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-charcoal-950/40 transition-colors group-hover:bg-charcoal-950/55"
-                    />
-                    <div className="relative flex flex-col items-center gap-4">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-charcoal-900/80 text-gold backdrop-blur transition-colors group-hover:bg-gold group-hover:text-charcoal-950">
-                        <Play size={18} className="ml-0.5" fill="currentColor" />
-                      </span>
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-white/70 group-hover:text-white">
-                        Watch on {r.platform}
-                      </p>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="flex h-full flex-col items-center justify-center gap-4">
-                    <Waveform bars={22} className="h-8 w-32" animate={false} />
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-white/30">
-                      Embed slot · {r.platform}
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="p-6">
+              <a
+                href={r.link}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative block aspect-[9/16] overflow-hidden border-b border-hairline bg-charcoal-950"
+              >
+                {/* Gold radial backdrop — same on every tile for unification */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-radial-gold opacity-50 transition-opacity duration-500 group-hover:opacity-70"
+                />
+
+                {/* Waveform texture */}
+                <Waveform
+                  bars={18}
+                  className="absolute inset-x-0 top-1/2 mx-auto h-20 w-44 -translate-y-1/2 text-gold/15"
+                  animate={false}
+                />
+
+                {/* Bottom gradient for legibility */}
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-charcoal-950 via-charcoal-950/70 to-transparent"
+                />
+
+                {/* Platform badge top-left */}
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-charcoal-950/70 px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-white/80 backdrop-blur">
+                  <Instagram size={10} />
+                  Reel
+                </span>
+
+                {/* Duration badge top-right */}
+                <span className="absolute right-3 top-3 rounded bg-charcoal-950/80 px-1.5 py-0.5 font-mono text-[9px] text-white/80 backdrop-blur">
+                  {r.length}
+                </span>
+
+                {/* Title overlay */}
+                <p className="absolute inset-x-3 bottom-3 line-clamp-2 font-display text-sm font-bold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                  {r.title}
+                </p>
+
+                {/* Play button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-charcoal-900/70 text-gold backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-charcoal-950">
+                    <Play size={20} className="ml-0.5" fill="currentColor" />
+                  </span>
+                </div>
+              </a>
+              <div className="p-5">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold">
-                  {r.platform === "YouTube" ? (
-                    <Youtube size={13} />
-                  ) : r.platform === "Instagram" ? (
-                    <Instagram size={13} />
-                  ) : (
-                    <Radio size={13} />
-                  )}
-                  {r.platform}
+                  <Instagram size={13} />
+                  Instagram Reel
                   <span className="text-white/30">· {r.length}</span>
                 </div>
                 <h3 className="mt-3 text-base leading-snug">{r.title}</h3>
@@ -130,7 +140,8 @@ export function AudioHub() {
           ))}
         </div>
 
-        <Reveal i={1} className="card mt-6 p-7 sm:p-9">
+        {/* ---------- The Rig ---------- */}
+        <Reveal i={1} className="card mt-12 p-7 sm:p-9">
           <div className="flex items-center gap-3">
             <Music4 size={18} className="text-gold" />
             <h3 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
@@ -171,6 +182,28 @@ export function AudioHub() {
             })}
           </div>
         </Reveal>
+
+        {/* ---------- Find me on ---------- */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          <span className="mr-2 font-mono text-[10px] uppercase tracking-widest text-white/40">
+            Find me on
+          </span>
+          {socials.map((s) => {
+            const Icon = platformIcon[s.platform];
+            return (
+              <a
+                key={s.platform}
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-charcoal-900 px-4 py-2 text-sm text-white/75 transition-all duration-300 hover:border-gold/50 hover:text-gold"
+              >
+                <Icon size={14} />
+                <span>{s.handle}</span>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
