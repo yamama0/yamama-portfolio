@@ -70,7 +70,7 @@
   /* Small uppercase tracked label used as a section eyebrow —
      lifted from the "P R O D U C T I O N S" lockup. */
   .eyebrow {
-    @apply font-body text-[0.6875rem] font-medium uppercase tracking-brand text-gold;
+    @apply font-body text-xs font-medium uppercase tracking-brand text-gold;
   }
 
   .card {
