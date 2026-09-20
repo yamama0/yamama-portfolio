@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Facebook,
   Instagram,
@@ -22,26 +23,31 @@ const releases = [
     title: "Is Metal Satanic?",
     length: "01:27",
     link: "https://www.instagram.com/reel/C6_xkllN_9w/",
+    thumbnail: "/Is Metal satanic",
   },
   {
     title: "Palm Muted Chords",
     length: "00:42",
     link: "https://www.instagram.com/reel/DKc2OGXNpny/",
+    thumbnail: "/Palm muted chords",
   },
   {
     title: "Future Music Guide Collab",
     length: "00:55",
     link: "https://www.instagram.com/reel/DdZcu5ziMD8/",
+    thumbnail: "/Future music guide collab",
   },
   {
     title: "Nothing Else Matters — Story",
     length: "01:12",
     link: "https://www.instagram.com/reel/C1NTu2bt01O/",
+    thumbnail: "/Nothing else matters",
   },
   {
     title: "This I Love (Guitar Solo)",
     length: "00:48",
     link: "https://www.instagram.com/reel/DIUZUEYtpX_/",
+    thumbnail: "/This I love",
   },
 ] as const;
 
@@ -86,18 +92,28 @@ export function AudioHub() {
                 rel="noreferrer"
                 className="group relative block aspect-[9/16] overflow-hidden border-b border-hairline bg-charcoal-950"
               >
-                {/* Gold radial backdrop — same on every tile for unification */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-radial-gold opacity-50 transition-opacity duration-500 group-hover:opacity-70"
-                />
-
-                {/* Waveform texture */}
-                <Waveform
-                  bars={18}
-                  className="absolute inset-x-0 top-1/2 mx-auto h-20 w-44 -translate-y-1/2 text-gold/15"
-                  animate={false}
-                />
+                {r.thumbnail ? (
+                  <Image
+                    src={r.thumbnail}
+                    alt={r.title}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <>
+                    {/* Gold radial fallback when no thumbnail */}
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-radial-gold opacity-50"
+                    />
+                    <Waveform
+                      bars={18}
+                      className="absolute inset-x-0 top-1/2 mx-auto h-20 w-44 -translate-y-1/2 text-gold/15"
+                      animate={false}
+                    />
+                  </>
+                )}
 
                 {/* Bottom gradient for legibility */}
                 <div
