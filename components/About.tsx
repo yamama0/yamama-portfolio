@@ -1,5 +1,5 @@
 import { education, certifications } from "@/lib/data/experience";
-import { skillGroups, stats } from "@/lib/data/profile";
+import { skillGroups } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 import { Logo } from "./ui/Logo";
@@ -33,31 +33,10 @@ export function About() {
             </p>
           </div>
 
-          <Reveal i={1} className="flex flex-col items-center justify-center gap-3 text-gold/25 lg:items-end">
+          <Reveal i={1} className="flex items-center justify-center lg:justify-end">
             <Logo className="h-44 w-auto text-gold/35 lg:h-56" />
-            <p className="font-body text-[10px] uppercase tracking-brand text-white/35">
-              Yamama · Productions
-            </p>
           </Reveal>
         </div>
-
-        <Reveal i={2}>
-          <ul className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-4">
-            {stats.map((s) => (
-              <li key={s.label} className="bg-charcoal-900 p-6 sm:p-7">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">
-                  {s.value}
-                </p>
-                <p className="mt-2 font-display text-sm font-bold text-white">
-                  {s.label}
-                </p>
-                <p className="mt-1 text-xs leading-relaxed text-white/40">
-                  {s.detail}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((g, i) => (
