@@ -2,6 +2,7 @@ import { education, certifications } from "@/lib/data/experience";
 import { skillGroups, stats } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
+import { Logo } from "./ui/Logo";
 
 export function About() {
   return (
@@ -12,31 +13,35 @@ export function About() {
           title="QA's discipline, a product manager's judgement."
         />
 
-        <div className="mx-auto max-w-3xl space-y-6 text-base leading-relaxed text-white/65 sm:text-[1.0625rem]">
-          <p>
-            I came into software through{" "}
-            <strong className="font-semibold text-white">QA</strong> — the best
-            on-ramp to product I could have asked for. Writing 100+ test cases
-            teaches you that a requirement without an observable outcome isn't
-            one. Then I built the pipeline that runs them — Docker, GitHub
-            Actions, regression suites — and{" "}
-            <strong className="font-semibold text-white">
-              cut deployment time by 40%
-            </strong>
-            .
-          </p>
-          <p>
-            Today I run discovery-to-release at Suplyd:{" "}
-            <strong className="font-semibold text-white">
-              112 tickets authored
-            </strong>
-            , Mixpanel funnels as the tiebreaker, PRDs that leave engineers
-            nothing to guess at. If it's blocked on a GraphQL response shape
-            or a Docker build, I read the error rather than forward it.
-          </p>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+          <div className="space-y-6 text-base leading-relaxed text-white/65 sm:text-[1.0625rem]">
+            <p>
+              I came into software through{" "}
+              <strong className="font-semibold text-white">QA</strong> — and it
+              turned out to be the best possible on-ramp to product. Writing a
+              hundred test cases teaches you that a requirement without an
+              observable outcome isn't a requirement, it's a wish. So I built
+              the pipeline that runs them — Docker, GitHub Actions, regression
+              suites — and watched deployment time drop until I knew I'd earned
+              the right to decide what goes through it.
+            </p>
+            <p>
+              Today I run discovery-to-release at Suplyd. Mixpanel funnels are
+              the tiebreaker, PRDs leave engineers nothing to guess at, and
+              when something's blocked on a GraphQL response shape or a Docker
+              build, I read the error rather than forward it.
+            </p>
+          </div>
+
+          <Reveal i={1} className="flex flex-col items-center justify-center gap-3 text-gold/25 lg:items-end">
+            <Logo className="h-44 w-auto text-gold/35 lg:h-56" />
+            <p className="font-body text-[10px] uppercase tracking-brand text-white/35">
+              Yamama · Productions
+            </p>
+          </Reveal>
         </div>
 
-        <Reveal i={1}>
+        <Reveal i={2}>
           <ul className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-4">
             {stats.map((s) => (
               <li key={s.label} className="bg-charcoal-900 p-6 sm:p-7">
