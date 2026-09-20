@@ -37,15 +37,25 @@ export function Contact() {
 
         <Reveal i={3}>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a href={`mailto:${profile.email}`} className="btn-primary group">
-              {profile.email}
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label={`Email ${profile.email}`}
+              className="btn-primary group"
+            >
+              <span className="sm:hidden">Email me</span>
+              <span className="hidden sm:inline">{profile.email}</span>
               <ArrowUpRight
                 size={16}
                 className="transition-transform duration-300 ease-brand group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </a>
-            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="btn-outline">
-              {profile.phone}
+            <a
+              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              aria-label={`Call ${profile.phone}`}
+              className="btn-outline"
+            >
+              <span className="sm:hidden">Call</span>
+              <span className="hidden sm:inline">{profile.phone}</span>
             </a>
             <a
               href={`https://wa.me/${profile.phone.replace(/[\s+]/g, "")}`}
@@ -84,11 +94,14 @@ export function Contact() {
               Productions
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-white/30">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-widest text-white/40">
             <span>© {new Date().getFullYear()} Yamama</span>
-            <span>
-              {profile.languages.map((l) => `${l.name} · ${l.level}`).join("   /   ")}
-            </span>
+            {profile.languages.map((l, i) => (
+              <span key={l.name}>
+                {l.name} · {l.level}
+                {i < profile.languages.length - 1 ? <span aria-hidden> / </span> : null}
+              </span>
+            ))}
           </div>
         </div>
       </div>

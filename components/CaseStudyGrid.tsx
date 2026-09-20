@@ -25,7 +25,7 @@ export function CaseStudyGrid() {
             <Reveal key={cs.slug} i={i} as="article">
               <Link
                 href={`/case-studies/${cs.slug}`}
-                className="card card-hover group flex h-full flex-col p-7 sm:p-8"
+                className="card card-hover group flex h-full flex-col p-5 sm:p-7 sm:p-8"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex flex-wrap items-center gap-2">
