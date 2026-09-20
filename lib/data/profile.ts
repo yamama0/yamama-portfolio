@@ -53,7 +53,7 @@ export const stats = [
   { value: "40%", label: "Deployment time cut", detail: "Docker + GitHub Actions CI/CD" },
   { value: "112", label: "Tickets authored", detail: "Linear, May 2025 – Aug 2026" },
   { value: "83%", label: "Shipped to production", detail: "93 of 112 released" },
-  { value: "13+", label: "Years on instruments", detail: "Composer & producer" },
+  { value: "100+", label: "Test cases authored", detail: "Cypress & Selenium automation" },
 ] as const;
 
 export type SkillItem = {
