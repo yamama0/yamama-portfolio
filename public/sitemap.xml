@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://yamama.site/</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/music</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/ai-food-support-assistant</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/dsquares-loyalty-wallet-engine</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/consolidated-financial-dashboard</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/data-cleansing-onboarding</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/analytics-tracking-consistency</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/app-rebrand-v2</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/case-studies/odoo-15-to-18-upgrade</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://yamama.site/The%20Angry%20Bird.pdf</loc>
+       <lastmod>2026-09-20T23:00:50+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+</urlset>

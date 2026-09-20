@@ -76,6 +76,14 @@ export const metadata: Metadata = {
     description: ogDescription,
   },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/xml": [
+        { url: "/sitemap.xml", title: "Sitemap" },
+      ],
+    },
+  },
 };
 
 export const viewport: Viewport = {
