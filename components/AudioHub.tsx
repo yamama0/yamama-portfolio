@@ -23,31 +23,31 @@ const releases = [
     title: "Is Metal Satanic?",
     length: "01:27",
     link: "https://www.instagram.com/reel/C6_xkllN_9w/",
-    thumbnail: "/Is Metal satanic",
+    thumbnail: "/is-metal-satanic.jpg",
   },
   {
     title: "Palm Muted Chords",
     length: "00:42",
     link: "https://www.instagram.com/reel/DKc2OGXNpny/",
-    thumbnail: "/Palm muted chords",
+    thumbnail: "/palm-muted-chords.jpg",
   },
   {
     title: "Future Music Guide Collab",
     length: "00:55",
     link: "https://www.instagram.com/reel/DdZcu5ziMD8/",
-    thumbnail: "/Future music guide collab",
+    thumbnail: "/future-music-guide-collab.jpg",
   },
   {
     title: "Nothing Else Matters — Story",
     length: "01:12",
     link: "https://www.instagram.com/reel/C1NTu2bt01O/",
-    thumbnail: "/Nothing else matters",
+    thumbnail: "/nothing-else-matters.jpg",
   },
   {
     title: "This I Love (Guitar Solo)",
     length: "00:48",
     link: "https://www.instagram.com/reel/DIUZUEYtpX_/",
-    thumbnail: "/This I love",
+    thumbnail: "/this-i-love.jpg",
   },
 ] as const;
 

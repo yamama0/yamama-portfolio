@@ -1,3 +1,14 @@
+import {
+  BarChart3,
+  BookText,
+  Figma,
+  ListTodo,
+  MessageCircle,
+  MessageSquare,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
+
 export const profile = {
   name: "Yamama",
   role: "Technical Product Manager",
@@ -28,7 +39,15 @@ export const stats = [
   { value: "13+", label: "Years on instruments", detail: "Composer & producer" },
 ] as const;
 
-export const skillGroups = [
+export type ToolItem = {
+  name: string;
+  note?: string;
+  icon: LucideIcon;
+};
+
+export type SkillItem = string | ToolItem;
+
+export const skillGroups: { title: string; items: readonly SkillItem[] }[] = [
   {
     title: "Product",
     items: [
@@ -65,15 +84,16 @@ export const skillGroups = [
   {
     title: "Tooling",
     items: [
-      "Linear",
-      "Notion (databases & workflows)",
-      "Jira",
-      "Mixpanel",
-      "WebEngage",
-      "Chat PRD",
+      { name: "Linear", icon: ListTodo },
+      { name: "Notion", note: "databases & workflows", icon: BookText },
+      { name: "Jira", icon: Workflow },
+      { name: "Figma", icon: Figma },
+      { name: "Mixpanel", icon: BarChart3 },
+      { name: "WebEngage", icon: MessageSquare },
+      { name: "Chat PRD", icon: MessageCircle },
     ],
   },
-] as const;
+];
 
 export const audioStack = [
   {

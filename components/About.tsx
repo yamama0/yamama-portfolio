@@ -1,7 +1,11 @@
 import { education, certifications } from "@/lib/data/experience";
-import { skillGroups } from "@/lib/data/profile";
+import { skillGroups, type ToolItem } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
+
+function isToolItem(it: string | ToolItem): it is ToolItem {
+  return typeof it !== "string";
+}
 
 export function About() {
   return (
@@ -63,18 +67,36 @@ export function About() {
                     {g.title}
                   </h3>
                   <ul className="mt-4 space-y-2">
-                    {g.items.map((it) => (
-                      <li
-                        key={it}
-                        className="flex gap-2.5 text-[13px] leading-snug text-white/60"
-                      >
-                        <span
-                          aria-hidden
-                          className="mt-[7px] h-1 w-1 flex-none rounded-full bg-gold/60"
-                        />
-                        {it}
-                      </li>
-                    ))}
+                    {g.items.map((it) => {
+                      const key = typeof it === "string" ? it : it.name;
+                      return isToolItem(it) ? (
+                        <li
+                          key={key}
+                          className="flex items-center gap-2.5 text-[13px] leading-snug text-white/70"
+                        >
+                          <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md border border-hairline bg-charcoal-900 text-gold/80">
+                            <it.icon size={13} strokeWidth={1.75} />
+                          </span>
+                          <span>
+                            <span className="text-white">{it.name}</span>
+                            {it.note ? (
+                              <span className="text-white/40"> · {it.note}</span>
+                            ) : null}
+                          </span>
+                        </li>
+                      ) : (
+                        <li
+                          key={key}
+                          className="flex gap-2.5 text-[13px] leading-snug text-white/60"
+                        >
+                          <span
+                            aria-hidden
+                            className="mt-[7px] h-1 w-1 flex-none rounded-full bg-gold/60"
+                          />
+                          {it}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </Reveal>
               ))}
