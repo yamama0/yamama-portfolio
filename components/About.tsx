@@ -1,3 +1,5 @@
+"use client";
+
 import { education, certifications } from "@/lib/data/experience";
 import { skillGroups } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
