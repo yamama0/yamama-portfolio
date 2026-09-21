@@ -5,8 +5,6 @@ import { skillGroups, type SkillItem } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 import { Logo } from "./ui/Logo";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 
 type SkillGroup = (typeof skillGroups)[number];
 
@@ -74,36 +72,10 @@ export function About() {
           </Reveal>
         </div>
 
-        <div className="skills-swiper mt-14">
-          {/* Desktop / tablet: regular 4-column grid */}
-          <div className="hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.map((g, i) => (
-              <SkillCard key={g.title} group={g} index={i} />
-            ))}
-          </div>
-
-          {/* Mobile only: swiper carousel with 2-3 per page + arrows */}
-          <div className="block sm:hidden">
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={14}
-              slidesPerView={2}
-              breakpoints={{
-                480: { slidesPerView: 3, spaceBetween: 16 },
-              }}
-              navigation
-              loop
-              grabCursor
-              a11y={{ slideRole: "group" }}
-              className="!pb-12"
-            >
-              {skillGroups.map((g) => (
-                <SwiperSlide key={g.title}>
-                  <SkillCard group={g} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {skillGroups.map((g, i) => (
+            <SkillCard key={g.title} group={g} index={i} />
+          ))}
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">

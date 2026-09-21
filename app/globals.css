@@ -133,53 +133,48 @@
     transform: scale(1.25);
   }
 
-  /* --- Swiper navigation arrows --- gold circles that read against
-     both the dark page and the bright reel thumbnails. */
+  /* --- Swiper navigation arrows --- thick gold chevrons, no chrome.
+     Matches the brand's heavy-display-arrow language so the controls
+     read as typography rather than UI buttons. */
   .reels-swiper .swiper-button-prev,
   .reels-swiper .swiper-button-next,
   .skills-swiper .swiper-button-prev,
   .skills-swiper .swiper-button-next {
     color: var(--gold);
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.55);
-    border: 1px solid rgba(253, 185, 19, 0.35);
-    border-radius: 9999px;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 0.3s ease, border-color 0.3s ease,
-      transform 0.3s ease;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: color 0.3s ease, transform 0.3s ease,
+      text-shadow 0.3s ease;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
   }
   .reels-swiper .swiper-button-prev:hover,
   .reels-swiper .swiper-button-next:hover,
   .skills-swiper .swiper-button-prev:hover,
   .skills-swiper .swiper-button-next:hover {
-    background: var(--gold);
-    color: var(--ink);
-    border-color: var(--gold);
-    transform: scale(1.05);
+    color: #ffe27a;
+    transform: translateY(-1px);
+    text-shadow: 0 4px 18px rgba(253, 185, 19, 0.45);
   }
   .reels-swiper .swiper-button-prev::after,
   .reels-swiper .swiper-button-next::after,
   .skills-swiper .swiper-button-prev::after,
   .skills-swiper .swiper-button-next::after {
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: -2px;
   }
-  /* Tuck the arrows just inside the swiper bounds so they never fall
-     outside the section's padding on narrow viewports. */
-  .reels-swiper .swiper-button-prev,
-  .skills-swiper .swiper-button-prev {
-    left: 4px;
+  /* Nudge arrows just outside the swiper so they sit on the edge of
+     the slides rather than overlapping them. */
+  .reels-swiper .swiper-button-prev {
+    left: -8px;
   }
-  .reels-swiper .swiper-button-next,
-  .skills-swiper .swiper-button-next {
-    right: 4px;
-  }
-  .skills-swiper .swiper-button-prev,
-  .skills-swiper .swiper-button-next {
-    width: 34px;
-    height: 34px;
+  .reels-swiper .swiper-button-next {
+    right: -8px;
   }
 }
 
