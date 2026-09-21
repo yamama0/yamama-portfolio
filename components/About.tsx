@@ -3,6 +3,8 @@ import { skillGroups } from "@/lib/data/profile";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 import { Logo } from "./ui/Logo";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectFade } from "swiper/modules";
 
 export function About() {
   return (
@@ -38,32 +40,45 @@ export function About() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((g, i) => (
-            <Reveal key={g.title} i={i} className="card card-hover p-5">
-              <h3 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
-                {g.title}
-              </h3>
-              <ul className="mt-4 space-y-2.5">
-                {g.items.map((it) => (
-                  <li
-                    key={it.name}
-                    className="flex items-center gap-2.5 text-[13px] leading-snug text-white/70"
-                  >
-                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md border border-hairline bg-charcoal-900 text-gold/80">
-                      <it.icon size={13} strokeWidth={1.75} />
-                    </span>
-                    <span>
-                      <span className="text-white">{it.name}</span>
-                      {it.note ? (
-                        <span className="text-white/40"> · {it.note}</span>
-                      ) : null}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
+        <div className="skills-swiper mt-14">
+          <Swiper
+            modules={[Pagination, EffectFade]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            pagination={{ clickable: true }}
+            loop
+            grabCursor
+            a11y={{ slideRole: "group" }}
+            className="!pb-12"
+          >
+            {skillGroups.map((g) => (
+              <SwiperSlide key={g.title}>
+                <article className="card card-hover mx-auto max-w-md p-5">
+                  <h3 className="font-display text-sm font-bold uppercase tracking-widest text-gold">
+                    {g.title}
+                  </h3>
+                  <ul className="mt-4 space-y-2.5">
+                    {g.items.map((it) => (
+                      <li
+                        key={it.name}
+                        className="flex items-center gap-2.5 text-[13px] leading-snug text-white/70"
+                      >
+                        <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md border border-hairline bg-charcoal-900 text-gold/80">
+                          <it.icon size={13} strokeWidth={1.75} />
+                        </span>
+                        <span>
+                          <span className="text-white">{it.name}</span>
+                          {it.note ? (
+                            <span className="text-white/40"> · {it.note}</span>
+                          ) : null}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">

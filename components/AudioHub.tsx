@@ -1,4 +1,9 @@
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectFade, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import {
   Facebook,
   Instagram,
@@ -90,82 +95,89 @@ export function AudioHub() {
           fusion project — see below.
         </p>
 
-        {/* ---------- Featured Reels ---------- */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {releases.map((r, i) => (
-            <Reveal key={r.title} i={i} as="article" className="card card-hover overflow-hidden">
-              <a
-                href={r.link}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative block aspect-[9/16] overflow-hidden border-b border-hairline bg-charcoal-950"
-              >
-                {r.thumbnail ? (
-                  <Image
-                    src={r.thumbnail}
-                    alt={r.title}
-                    fill
-                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw"
-                    quality={65}
-                    priority={i < 2}
-                    placeholder="blur"
-                    blurDataURL={REEL_BLUR}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <>
-                    {/* Gold radial fallback when no thumbnail */}
+        {/* ---------- Featured Reels (Swiper carousel, fade) ---------- */}
+        <div className="reels-swiper mx-auto max-w-md">
+          <Swiper
+            modules={[Pagination, EffectFade, Autoplay]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            pagination={{ clickable: true }}
+            loop
+            grabCursor
+            autoplay={{ delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            a11y={{ slideRole: "article" }}
+            className="!pb-12"
+          >
+            {releases.map((r) => (
+              <SwiperSlide key={r.title}>
+                <article className="card card-hover overflow-hidden">
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative block aspect-[9/16] overflow-hidden border-b border-hairline bg-charcoal-950"
+                  >
+                    {r.thumbnail ? (
+                      <Image
+                        src={r.thumbnail}
+                        alt={r.title}
+                        fill
+                        sizes="(min-width: 1024px) 28rem, 100vw"
+                        quality={65}
+                        placeholder="blur"
+                        blurDataURL={REEL_BLUR}
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <>
+                        <div
+                          aria-hidden
+                          className="absolute inset-0 bg-radial-gold opacity-50"
+                        />
+                        <Waveform
+                          bars={18}
+                          className="absolute inset-x-0 top-1/2 mx-auto h-20 w-44 -translate-y-1/2 text-gold/15"
+                          animate={false}
+                        />
+                      </>
+                    )}
+
                     <div
                       aria-hidden
-                      className="absolute inset-0 bg-radial-gold opacity-50"
+                      className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-charcoal-950 via-charcoal-950/70 to-transparent"
                     />
-                    <Waveform
-                      bars={18}
-                      className="absolute inset-x-0 top-1/2 mx-auto h-20 w-44 -translate-y-1/2 text-gold/15"
-                      animate={false}
-                    />
-                  </>
-                )}
 
-                {/* Bottom gradient for legibility */}
-                <div
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-charcoal-950 via-charcoal-950/70 to-transparent"
-                />
+                    <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-charcoal-950/70 px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-white/80 backdrop-blur">
+                      <Instagram size={10} />
+                      Reel
+                    </span>
 
-                {/* Platform badge top-left */}
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-charcoal-950/70 px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-white/80 backdrop-blur">
-                  <Instagram size={10} />
-                  Reel
-                </span>
+                    <span className="absolute right-3 top-3 rounded bg-charcoal-950/80 px-1.5 py-0.5 font-mono text-[9px] text-white/80 backdrop-blur">
+                      {r.length}
+                    </span>
 
-                {/* Duration badge top-right */}
-                <span className="absolute right-3 top-3 rounded bg-charcoal-950/80 px-1.5 py-0.5 font-mono text-[9px] text-white/80 backdrop-blur">
-                  {r.length}
-                </span>
+                    <p className="absolute inset-x-3 bottom-3 line-clamp-2 font-display text-sm font-bold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                      {r.title}
+                    </p>
 
-                {/* Title overlay */}
-                <p className="absolute inset-x-3 bottom-3 line-clamp-2 font-display text-sm font-bold leading-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                  {r.title}
-                </p>
-
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-charcoal-900/70 text-gold backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-charcoal-950">
-                    <Play size={20} className="ml-0.5" fill="currentColor" />
-                  </span>
-                </div>
-              </a>
-              <div className="p-5">
-                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold">
-                  <Instagram size={13} />
-                  Instagram Reel
-                  <span className="text-white/30">· {r.length}</span>
-                </div>
-                <h3 className="mt-3 text-base leading-snug">{r.title}</h3>
-              </div>
-            </Reveal>
-          ))}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-charcoal-900/70 text-gold backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-charcoal-950">
+                        <Play size={20} className="ml-0.5" fill="currentColor" />
+                      </span>
+                    </div>
+                  </a>
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold">
+                      <Instagram size={13} />
+                      Instagram Reel
+                      <span className="text-white/30">· {r.length}</span>
+                    </div>
+                    <h3 className="mt-3 text-base leading-snug">{r.title}</h3>
+                  </div>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         {/* ---------- The Rig ---------- */}
