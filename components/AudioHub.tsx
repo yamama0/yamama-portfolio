@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectFade, Autoplay } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+import "swiper/css/navigation";
 import {
   Facebook,
   Instagram,
@@ -97,13 +97,18 @@ export function AudioHub() {
           fusion project — see below.
         </p>
 
-        {/* ---------- Featured Reels (Swiper carousel, fade) ---------- */}
-        <div className="reels-swiper mx-auto max-w-md">
+        {/* ---------- Featured Reels (Swiper carousel) ---------- */}
+        <div className="reels-swiper">
           <Swiper
-            modules={[Pagination, EffectFade, Autoplay]}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
+            modules={[Pagination, Navigation, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
+            }}
             pagination={{ clickable: true }}
+            navigation
             loop
             grabCursor
             autoplay={{ delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true }}
@@ -112,7 +117,7 @@ export function AudioHub() {
           >
             {releases.map((r) => (
               <SwiperSlide key={r.title}>
-                <article className="card card-hover overflow-hidden">
+                <article className="card card-hover h-full overflow-hidden">
                   <a
                     href={r.link}
                     target="_blank"
@@ -124,7 +129,7 @@ export function AudioHub() {
                         src={r.thumbnail}
                         alt={r.title}
                         fill
-                        sizes="(min-width: 1024px) 28rem, 100vw"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         quality={65}
                         placeholder="blur"
                         blurDataURL={REEL_BLUR}
