@@ -87,6 +87,12 @@ export function AngryBird() {
                 <h4 className="mt-3 text-base font-bold leading-snug text-white">
                   {ep.scale}
                 </h4>
+                {ep.airingDate ? (
+                  <p className="mt-3 text-[13px] font-semibold tracking-wide text-white">
+                    <span className="text-gold">Airing</span>{" "}
+                    <span className="text-white/85">{ep.airingDate}</span>
+                  </p>
+                ) : null}
                 <div className="mt-5 flex flex-wrap items-center gap-2">
                   {ep.platforms.map((p) => (
                     <span

@@ -20,12 +20,31 @@ export type Episode = {
   scale: string;
   platforms: string[];
   status: string;
+  /** Human-readable airing date, e.g. "Oct 6, 2026". Optional. */
+  airingDate?: string;
 };
 
 export const episodes: Episode[] = [
-  { number: 1, scale: "Hijaz / Phrygian Dominant", platforms: ["YouTube", "TikTok"], status: "Coming Soon" },
-  { number: 2, scale: "Hijaz Kar / Double Harmonic", platforms: ["YouTube", "TikTok"], status: "Coming Soon" },
-  { number: 3, scale: "Nahawand / Harmonic Minor", platforms: ["YouTube", "TikTok"], status: "Coming Soon" },
+  {
+    number: 1,
+    scale: "Hijaz / Phrygian Dominant",
+    platforms: ["YouTube", "TikTok"],
+    status: "Coming Soon",
+    airingDate: "Oct 6, 2026",
+  },
+  {
+    number: 2,
+    scale: "Ajam / Major",
+    platforms: ["YouTube", "TikTok"],
+    status: "Coming Soon",
+    airingDate: "Oct 8, 2026",
+  },
+  {
+    number: 3,
+    scale: "Hijaz Kar / Double Harmonic",
+    platforms: ["YouTube", "TikTok"],
+    status: "Coming Soon",
+  },
 ];
 
 /**
