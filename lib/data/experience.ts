@@ -13,6 +13,17 @@ export type Role = {
 
 export const experience: Role[] = [
   {
+    company: "Synapse Analytics - Azkavision",
+    title: "Product Owner II",
+    location: "Cairo, Egypt",
+    start: "Oct 2026",
+    end: "present",
+    current: true,
+    thesis: "",
+    highlights: [],
+    tags: [],
+  },
+  {
     company: "Suplyd",
     title: "Technical Product Manager",
     location: "Cairo, Egypt",

@@ -53,21 +53,25 @@ export function Timeline() {
                 {role.company} · {role.location}
               </p>
 
-              <p className="mt-5 border-l-2 border-gold/40 pl-4 text-[15px] italic leading-relaxed text-white/60">
-                {role.thesis}
-              </p>
+              {role.thesis ? (
+                <p className="mt-5 border-l-2 border-gold/40 pl-4 text-[15px] italic leading-relaxed text-white/60">
+                  {role.thesis}
+                </p>
+              ) : null}
 
-              <ul className="mt-6 space-y-2.5">
-                {role.highlights.map((h) => (
-                  <li key={h} className="flex gap-3 text-[15px] leading-relaxed text-white/60">
-                    <span
-                      aria-hidden
-                      className="mt-[9px] h-1 w-1 flex-none rounded-full bg-gold/60"
-                    />
-                    {h}
-                  </li>
-                ))}
-              </ul>
+              {role.highlights.length > 0 ? (
+                <ul className="mt-6 space-y-2.5">
+                  {role.highlights.map((h) => (
+                    <li key={h} className="flex gap-3 text-[15px] leading-relaxed text-white/60">
+                      <span
+                        aria-hidden
+                        className="mt-[9px] h-1 w-1 flex-none rounded-full bg-gold/60"
+                      />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
 
               <ul className="mt-6 flex flex-wrap gap-1.5">
                 {role.tags.map((t) => (
